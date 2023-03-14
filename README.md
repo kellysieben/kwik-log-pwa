@@ -9,4 +9,8 @@
   </ItemGroup>
 ```
 * add ==> "url": "http://localhost:5xxx" ==> launch.json
+
+
+## Articles
+* https://www.syncfusion.com/faq/blazor/general/how-do-i-use-indexeddb-in-blazor-webassembly
 * 
