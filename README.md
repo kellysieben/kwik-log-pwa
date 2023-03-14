@@ -15,4 +15,5 @@
 * https://www.syncfusion.com/faq/blazor/general/how-do-i-use-indexeddb-in-blazor-webassembly
 * https://blog.stevensanderson.com/2019/08/03/blazor-indexeddb/
 * https://getbootstrap.com/docs/4.1/layout/grid/
+* https://blazorschool.com/tutorial/blazor-wasm/dotnet6/indexeddb-storage-749869
 * 
