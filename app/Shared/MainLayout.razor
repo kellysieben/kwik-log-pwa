@@ -1,17 +1,42 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
     <main>
         <div class="top-row px-4">
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
         </div>
-
+        <div class="px-2">
+            <nav class="navbar fixed-top navbar-expand bg-light py-0">
+                <div class="navbar-nav">
+                    <NavLink href="" Match="NavLinkMatch.All" class="nav-item nav-link">
+                        <h3>kwklg</h3>
+                    </NavLink>
+                </div>
+            </nav>
+        </div>
         <article class="content px-4">
             @Body
         </article>
+        <div>
+            <nav class="navbar fixed-bottom navbar-expand navbar-dark bg-primary py-0">
+                <div class="navbar-nav nav-fill w-100">
+                    @* <NavLink href="" Match="NavLinkMatch.All" class="nav-item nav-link">
+                        <span>
+                            <img src=".\img\house-door.svg" alt="Home" width="32" height="32">
+                        </span>
+                    </NavLink> *@
+                    <NavLink href="" class="nav-item nav-link">
+                        <span>
+                            <img src=".\img\journal-text.svg" alt="Home" width="32" height="32">
+                        </span>
+                    </NavLink>
+                    <NavLink href="" class="nav-item nav-link">
+                        <span>
+                            <img src=".\img\search.svg" alt="Home" width="32" height="32">
+                        </span>
+                    </NavLink>
+                </div>
+            </nav>
+        </div>
     </main>
 </div>

@@ -1,9 +1,19 @@
 ﻿@page "/"
+@inject NavigationManager navManager
+@inject IRepository<KwikLogDTO> _logRepository
 
-<PageTitle>Index</PageTitle>
+<PageTitle>kwik</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="row">
+    <div class="col-md-12">
+        @if (entries is not null)
+        {
+            <div style="border:1px dotted blue;">TOTAL ENTRIES = @entries.Count</div>
+            <Virtualize Items="@entries" Context="e" OverscanCount="10">
+                <div style="border:1px dotted green;">@e.TicksUTC.ToLocalTime().ToString("yyyy-MMM-dd hh:mm:ss")</div>
+                <div style="border:1px dotted red;">@e.Entry</div>
+            </Virtualize>
+        }
+    </div>
+</div>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />

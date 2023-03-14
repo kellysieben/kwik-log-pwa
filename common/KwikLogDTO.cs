@@ -2,6 +2,6 @@
 
 public record KwikLogDTO
 {
-    public DateTime TimestampUTC { get; set; }
+    public DateTimeOffset TicksUTC { get; set; }
     public string Entry { get; set; }
 }

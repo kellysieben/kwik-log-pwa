@@ -1,0 +1,18 @@
+#!/bin/bash
+set -x #echo on
+
+cd app
+dotnet clean
+cd ..
+
+cd common
+dotnet clean
+cd ..
+
+cd common
+dotnet build
+cd ..
+
+cd app
+dotnet build
+cd ..
