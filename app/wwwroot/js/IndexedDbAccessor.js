@@ -48,6 +48,30 @@ export async function get(collectionName, id)
     return result;
 }
 
+export async function getAll(collectionName, id)
+{
+    console.log("JBF.js : getAll");
+    let request = new Promise((resolve) =>
+    {
+        let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
+        kwikIndexedDB.onsuccess = function ()
+        {
+            let transaction = kwikIndexedDB.result.transaction(collectionName, "readonly");
+            let collection = transaction.objectStore(collectionName);
+            let result = collection.getAll();
+
+            result.onsuccess = function (e)
+            {
+                resolve(result.result);
+            }
+        }
+    });
+
+    let result = await request;
+
+    return result;
+}
+
 let CURRENT_VERSION = 1;
 let DATABASE_NAME = "kwik_log";
 let LOG_COLLECTION_NAME = "entries";
