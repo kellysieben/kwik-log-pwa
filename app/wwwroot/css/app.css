@@ -99,3 +99,23 @@ a, .btn-link {
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
+
+.kwik-entry {
+    border-style: solid;
+    border-color: darkgrey;
+    border-width: 1px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.kwik-entry-delta-days {
+    /* border: 1px dotted red; */
+}
+
+.kwik-entry-timestamp {
+    /* border: 1px dotted green; */
+}
+
+.kwik-entry-entry {
+    /* border: 1px dotted yellow; */
+}

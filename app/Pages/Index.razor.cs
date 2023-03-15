@@ -10,6 +10,11 @@ public partial class Index
     protected override async Task OnInitializedAsync()
     {
         entries = await _logRepository.GetAllAsync();
-        var jbf_1 = 1;
+    }
+
+    private string CalcDeltaDays(KwikLogDTO entry)
+    {
+        var delta = DateTime.UtcNow - entry.TimestampUTC;
+        return $"{Math.Floor(delta.TotalDays)}";
     }
 }
