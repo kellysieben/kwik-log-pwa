@@ -9,7 +9,7 @@
     {
         <div>Total Entries = @entries.Count</div>
         <Virtualize Items="@entries" Context="e" OverscanCount="10">
-            <div class="kwik-entry row my-5">
+            <div class="kwik-entry row mb-1">
                 <div class="col-2 kwik-entry-delta-days">@CalcDeltaDays(e)</div>
                 <div class="col-4 kwik-entry-timestamp">@e.TimestampUTC.ToLocalTime().ToString("yyyy-MMM-dd HH:mm:ss")</div>
                 <div class="col-6 kwik-entry-entry">@e.Entry</div>

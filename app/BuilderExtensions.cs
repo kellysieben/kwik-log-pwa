@@ -9,5 +9,6 @@ public static class BuilderExtensions
     public static void ConfigureServices(this WebAssemblyHostBuilder builder)
     {
         builder.Services.AddSingleton<IRepository<KwikLogDTO>, FakeLogsRepo>();
+        builder.Services.AddScoped<IndexedDbAccessor>();
     }
 }
