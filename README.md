@@ -17,6 +17,8 @@
 * https://getbootstrap.com/docs/4.1/layout/grid/
 * https://blazorschool.com/tutorial/blazor-wasm/dotnet6/indexeddb-storage-749869
 * https://web.dev/indexeddb/
+* https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/put
+* https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
 
 ## Stuff
 * https://icons.getbootstrap.com/
