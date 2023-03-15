@@ -9,6 +9,7 @@ public partial class Index
 
     protected override async Task OnInitializedAsync()
     {
+        System.Console.WriteLine($"JBF.cs : Index.OnInitializedAsync");
         entries = await _logRepository.GetAllAsync();
     }
 

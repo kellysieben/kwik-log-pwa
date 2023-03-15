@@ -13,6 +13,7 @@ public class FakeLogsRepo : IRepository<KwikLogDTO>
 
     private ICollection<KwikLogDTO> GetAll()
     {
+        System.Console.WriteLine($"JBF.cs : FakeRepo.GetAll");
         int nEntries = rnd.Next(2000, 3000);
         var result = new List<KwikLogDTO>();
         //var currentTicks = DateTime.UtcNow.Ticks;
@@ -22,7 +23,7 @@ public class FakeLogsRepo : IRepository<KwikLogDTO>
             result.Add(new KwikLogDTO
             {
                 Entry = $"This is random entry number {i}",
-                TimestampUTC = DateTime.UtcNow.AddSeconds(-1 * rnd.Next(8640000))
+                TimestampUTC = DateTime.UtcNow.AddHours(-1 * rnd.Next(87660))
             });
         }
 

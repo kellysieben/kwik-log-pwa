@@ -1,15 +1,19 @@
 export function initialize()
 {
+    console.log("JBF.js : initialize.0");
     let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
     kwikIndexedDB.onupgradeneeded = function ()
     {
+        console.log("JBF.js : initialize.1.create");
         let db = kwikIndexedDB.result;
-        db.createObjectStore(LOG_COLLECTION_NAME, { keyPath: "id" });
+        //db.createObjectStore(LOG_COLLECTION_NAME, { keyPath: "id" });
+        db.createObjectStore(LOG_COLLECTION_NAME, { autoIncrement: true});
     }
 }
 
 export function set(collectionName, value)
 {
+    console.log("JBF.js : set");
     let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
 
     kwikIndexedDB.onsuccess = function ()
@@ -22,6 +26,7 @@ export function set(collectionName, value)
 
 export async function get(collectionName, id)
 {
+    console.log("JBF.js : get");
     let request = new Promise((resolve) =>
     {
         let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);

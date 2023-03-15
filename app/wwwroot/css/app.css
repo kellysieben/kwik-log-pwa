@@ -102,20 +102,20 @@ a, .btn-link {
 
 .kwik-entry {
     border-style: solid;
-    border-color: greenyellow;
+    border-color: darkslategrey;
     border-width: 1px;
     /* margin-top: 3px; */
     /* margin-bottom: 3px; */
 }
 
 .kwik-entry-delta-days {
-    /* border: 1px dotted red; */
+    border: 1px dotted red;
 }
 
 .kwik-entry-timestamp {
-    /* border: 1px dotted green; */
+    border: 1px dotted green;
 }
 
 .kwik-entry-entry {
-    /* border: 1px dotted yellow; */
+    border: 1px dotted yellow;
 }

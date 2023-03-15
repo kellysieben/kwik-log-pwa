@@ -1,0 +1,22 @@
+﻿@page "/fakedata"
+@inject IndexedDbAccessor IndexedDbAccessor
+
+<h3>FakeData</h3>
+<div>
+    Last Time Add: @lastAdd.ToString("yyyy-MM-dd HH:mm:ss")
+</div>
+<br>
+<br>
+<EditForm Model="addEntry" OnValidSubmit="AddFakeData">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="row">
+        <div class="col-8">
+            <label for="entry-text">Entry</label>
+            <InputText style="width:90%" id="entry-text" @bind-Value="addEntry.Entry" />
+        </div>
+        <div class="col-4">
+            <button style="width:80%" type="submit">Add</button>
+        </div>
+    </div>
+</EditForm>
