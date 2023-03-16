@@ -22,3 +22,5 @@
 
 ## Stuff
 * https://icons.getbootstrap.com/
+* https://www.strathweb.com/2019/06/building-a-c-interactive-shell-in-a-browser-with-blazor-webassembly-and-roslyn/
+* https://github.com/filipw/Strathweb.Samples.BlazorCSharpInteractive
