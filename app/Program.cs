@@ -27,5 +27,6 @@ if (indexedDB is not null)
 }
 
 System.Console.WriteLine($"JBF.cs : Program.03");
+//host.UseAuthentication();
 
 await host.RunAsync();

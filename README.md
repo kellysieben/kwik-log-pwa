@@ -1,6 +1,6 @@
 # kwik-log-pwa
 
-* dotnet new blazorwasm -o pwa --pwa
+* dotnet new blazorwasm -o app --pwa
 * dotnet new classlib -o common
 * Add common project to other projects:
 ```xml
@@ -25,3 +25,8 @@
 * https://www.strathweb.com/2019/06/building-a-c-interactive-shell-in-a-browser-with-blazor-webassembly-and-roslyn/
 * https://github.com/filipw/Strathweb.Samples.BlazorCSharpInteractive
 * https://github.com/AlanLynn/Web-Terminal
+
+## AADB2C
+* https://devkimchi.com/2022/09/23/authn-ing-blazor-wasm-with-azure-ad-b2c/
+* https://dev.to/425show/secure-asp-net-blazor-wasm-apps-and-apis-with-azure-ad-b2c-474g
+* https://stackoverflow.com/questions/64866476/how-to-secure-an-azure-function-accessed-by-a-blazor-wasm-app-with-azure-ad-b2c
