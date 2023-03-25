@@ -8,14 +8,14 @@ namespace app.Pages;
 public class FakeAction
 {
     [Required]
-    public string Action { get; set; }
+    public string Action { get; set; } = "";
 }
 
 public partial class FakeData
 {
     private FakeAction action = new();
     private DateTime mostRecentTime = DateTime.MinValue;
-    private string mostRecentCommand;
+    private string? mostRecentCommand;
     protected override async Task OnInitializedAsync()
     {
         await Task.Run(() => System.Console.WriteLine($"JBF.cs : FakeData.OnInitializedAsync"));

@@ -5,7 +5,7 @@ namespace app.Pages;
 public partial class Index
 {
 
-    private ICollection<KwikLogDTO> entries;
+    private ICollection<KwikLogDTO>? entries;
 
     protected override async Task OnInitializedAsync()
     {

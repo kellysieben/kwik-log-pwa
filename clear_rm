@@ -1,22 +1,14 @@
 #!/bin/bash
 set -x #echo on
 
+dotnet nuget locals all --clear
+
 cd app
-dotnet clean
 rm -rf obj
 rm -rf bin
 cd ..
 
 cd common
-dotnet clean
 rm -rf obj
 rm -rf bin
-cd ..
-
-cd common
-dotnet build
-cd ..
-
-cd app
-dotnet build
 cd ..
