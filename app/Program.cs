@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using app;
 using app.Services;
+using common;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-builder.ConfigureServices();
+builder.Services.AddScoped<IRepository<KwikLogDTO>, AppLogsRepo>();
+builder.Services.AddScoped<IndexedDbAccessor>();
 
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");

@@ -1,5 +1,7 @@
 ﻿@page "/fakedata"
-@inject IndexedDbAccessor IndexedDbAccessor
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject IRepository<KwikLogDTO> _logRepository
 
 <h3>FakeData</h3>
 <div>

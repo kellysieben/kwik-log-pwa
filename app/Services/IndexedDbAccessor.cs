@@ -26,6 +26,14 @@ public class IndexedDbAccessor : IAsyncDisposable
         }
     }
 
+    public async Task<IList<T>> GetAllAsync<T>(string collectionName)
+    {
+        await WaitForReference();
+        var result = await _accessorJsRef.Value.InvokeAsync<IList<T>>("getAll", collectionName);
+
+        return result;
+    }
+
     public async Task<T> GetValueAsync<T>(string collectionName, int id)
     {
         await WaitForReference();

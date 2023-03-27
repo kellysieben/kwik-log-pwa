@@ -1,8 +1,31 @@
 ﻿@page "/"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
 @inject NavigationManager navManager
 @inject IRepository<KwikLogDTO> _logRepository
 
 <PageTitle>kwik</PageTitle>
+
+<div class="row px-2">
+    <div class="col-4 navbar-nav">
+        <NavLink href="" Match="NavLinkMatch.All" class="nav-item nav-link">
+            <h3>kwklg</h3>
+        </NavLink>
+    </div>
+    <div class="col-8">
+        <LoginDisplay />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-8">
+        <label for="entry-text">Entry</label>
+        <InputText style="width:90%" id="entry-text" @bind-Value="_entry" />
+    </div>
+    <div class="col-4">
+        <button style="width:80%" @onclick="AddEntry">Add</button>
+    </div>
+</div>
 
 <div class="container">
     @if (entries is not null)
@@ -10,9 +33,10 @@
         <div>Total Entries = @entries.Count</div>
         <Virtualize Items="@entries" Context="e" OverscanCount="10">
             <div class="kwik-entry row">
-                <div class="col-2 kwik-entry-delta-days">@CalcDeltaDays(e)</div>
-                <div class="col-4 kwik-entry-timestamp">@e.TimestampUTC.ToLocalTime().ToString("yyyy-MMM-dd HH:mm:ss")</div>
-                <div class="col-6 kwik-entry-entry">@e.Entry</div>
+                <div class="col-1 kwik-entry-delta-days">@CalcDeltaDays(e)</div>
+                <div class="col-2 kwik-entry-timestamp">@e.TimestampUTC.ToLocalTime().ToString("yyyy-MMM-dd HH:mm:ss")</div>
+                <div class="col-2 kwik-entry-timestamp">@e.Oid</div>
+                <div class="col-7 kwik-entry-entry">@e.Entry</div>
             </div>
         </Virtualize>
     }

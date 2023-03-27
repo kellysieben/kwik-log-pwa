@@ -6,6 +6,11 @@ public class FakeLogsRepo : IRepository<KwikLogDTO>
 {
     private static Random rnd = new();
 
+    public Task Add(KwikLogDTO entry)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<ICollection<KwikLogDTO>> GetAllAsync()
     {
         return await Task.Run(GetAll);
