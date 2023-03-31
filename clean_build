@@ -7,6 +7,12 @@ rm -rf obj
 rm -rf bin
 cd ..
 
+cd api
+dotnet clean
+rm -rf obj
+rm -rf bin
+cd ..
+
 cd common
 dotnet clean
 rm -rf obj
@@ -18,5 +24,9 @@ dotnet build
 cd ..
 
 cd app
+dotnet build
+cd ..
+
+cd api
 dotnet build
 cd ..

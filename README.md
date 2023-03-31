@@ -10,6 +10,8 @@
 ```
 * add ==> "url": "http://localhost:5xxx" ==> launch.json
 * dotnet new razorcomponent -n <page_name>
+* 
 
 ## Stuff
 * https://icons.getbootstrap.com/
+* https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-7.0

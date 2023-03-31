@@ -8,6 +8,11 @@ rm -rf obj
 rm -rf bin
 cd ..
 
+cd api
+rm -rf obj
+rm -rf bin
+cd ..
+
 cd common
 rm -rf obj
 rm -rf bin

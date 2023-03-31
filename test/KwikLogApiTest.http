@@ -1,0 +1,20 @@
+### Variables
+
+@hostname = localhost
+@https_port = 7079
+@http_port = 5276
+@host = {{hostname}}:{{https_port}}
+
+###
+
+GET https://{{host}}/
+
+###
+
+POST https://{{host}}/
+content-type: application/json
+
+{"name":"walk dog","isComplete":false}
+
+###
+

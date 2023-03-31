@@ -8,3 +8,7 @@ cd ..
 cd app
 dotnet build
 cd ..
+
+cd api
+dotnet build
+cd ..
