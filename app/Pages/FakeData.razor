@@ -4,9 +4,6 @@
 @inject IRepository<KwikLogDTO> _logRepository
 
 <h3>FakeData</h3>
-<div>
-    Last Command Run: [@mostRecentTime.ToString("yyyy-MM-dd HH:mm:ss")] : [@mostRecentCommand]
-</div>
 <br>
 <br>
 <EditForm Model="action" OnValidSubmit="HandleAdHocCommand">
@@ -22,3 +19,21 @@
         </div>
     </div>
 </EditForm>
+<br>
+<br>
+<hr>
+<div class="container">
+    @if (_actionLog is not null)
+    {
+        <div>Total Entries = @_actionLog.Count</div>
+        <Virtualize Items="@_actionLog" Context="e" OverscanCount="10">
+            <div class="kwik-entry row">
+                <div class="col-2 kwik-entry-entry">@e.Result</div>
+                <div class="col-2 kwik-entry-timestamp">@e.ResultTime.ToString("yyyy-MMM-dd HH:mm:ss")</div>
+                <div class="col-2 kwik-entry-timestamp">@e.Cmd</div>
+                <div class="col-3 kwik-entry-entry">@e.Args</div>
+                <div class="col-3 kwik-entry-entry">@e.Oid</div>
+            </div>
+        </Virtualize>
+    }
+</div>

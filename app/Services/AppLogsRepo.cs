@@ -16,8 +16,8 @@ public class AppLogsRepo : IRepository<KwikLogDTO>
         await _indexedDbAccessor.SetValueAsync<KwikLogDTO>("entries", entry);
     }
 
-    public async Task<ICollection<KwikLogDTO>> GetAllAsync()
+    public async Task<ICollection<KwikLogDTO>> GetAllAsync(string oid)
     {
-        return await _indexedDbAccessor.GetAllAsync<KwikLogDTO>("entries");
+        return await _indexedDbAccessor.GetAllByOwnerAsync<KwikLogDTO>("entries", oid);
     }
 }

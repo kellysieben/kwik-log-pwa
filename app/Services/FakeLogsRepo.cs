@@ -11,14 +11,13 @@ public class FakeLogsRepo : IRepository<KwikLogDTO>
         throw new NotImplementedException();
     }
 
-    public async Task<ICollection<KwikLogDTO>> GetAllAsync()
+    public async Task<ICollection<KwikLogDTO>> GetAllAsync(string oid)
     {
         return await Task.Run(GetAll);
     }
 
     private ICollection<KwikLogDTO> GetAll()
     {
-        System.Console.WriteLine($"JBF.cs : FakeRepo.GetAll");
         int nEntries = rnd.Next(2000, 3000);
         var result = new List<KwikLogDTO>();
         //var currentTicks = DateTime.UtcNow.Ticks;

@@ -1,52 +1,9 @@
 //////
-// another set of calls for indexedDB API
-//
-export function init_v2() {
-    const request = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
-
-    request.onupgradeneeded = function (event) {
-        const db = event.target.result;
-        if (!db.objectStoreNames.contains(LOG_COLLECTION_NAME)) {
-            db.createObjectStore(LOG_COLLECTION_NAME, { keyPath: 'id', autoIncrement: true });
-        }
-    };
-
-    request.onerror = function (event) {
-        console.error('Failed to create collection', event.target.error);
-    };
-
-    request.onsuccess = function (event) {
-        console.log(`Successfully created collection ${LOG_COLLECTION_NAME}`);
-    };
-}
-
-export function getAll_v2(collectionName) {
-    const request = indexedDB.open(DATABASE_NAME);
-
-    request.onerror = function (event) {
-        console.error('Failed to get all records', event.target.error);
-    };
-
-    request.onsuccess = function (event) {
-        const db = event.target.result;
-        const transaction = db.transaction(collectionName, 'readonly');
-        const collection = transaction.objectStore(collectionName);
-        const getAllRequest = collection.getAll();
-
-        getAllRequest.onsuccess = function (event) {
-            console.log('All records:', event.target.result);
-        };
-    };
-}
-
-//////
 // from an article posting: https://blazorschool.com/tutorial/blazor-wasm/dotnet6/indexeddb-storage-749869
 //
 export function initialize() {
-    console.log("JBF.js : initialize.0");
     let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
     kwikIndexedDB.onupgradeneeded = function () {
-        console.log("JBF.js : initialize.1.create");
         let db = kwikIndexedDB.result;
         //db.createObjectStore(LOG_COLLECTION_NAME, { keyPath: "id" });
         db.createObjectStore(LOG_COLLECTION_NAME, { autoIncrement: true });
@@ -54,7 +11,6 @@ export function initialize() {
 }
 
 export function set(collectionName, value) {
-    console.log("JBF.js : set");
     let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
 
     kwikIndexedDB.onsuccess = function () {
@@ -65,7 +21,6 @@ export function set(collectionName, value) {
 }
 
 export async function get(collectionName, id) {
-    console.log("JBF.js : get");
     let request = new Promise((resolve) => {
         let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
         kwikIndexedDB.onsuccess = function () {
@@ -85,7 +40,6 @@ export async function get(collectionName, id) {
 }
 
 export async function getAll(collectionName) {
-    console.log("JBF.js : getAll");
     let request = new Promise((resolve) => {
         let kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
         kwikIndexedDB.onsuccess = function () {
@@ -102,6 +56,62 @@ export async function getAll(collectionName) {
     let result = await request;
 
     return result;
+}
+
+export async function getAllByOwner(collectionName, oid) {
+    const request = new Promise((resolve) => {
+        const dbReq = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
+
+        dbReq.onerror = event => {
+            console.error('Database error:', event.target.errorCode);
+        };
+        dbReq.onsuccess = event => {
+            const db = event.target.result;
+            const transaction = db.transaction(LOG_COLLECTION_NAME, 'readonly');
+            const store = transaction.objectStore(LOG_COLLECTION_NAME);
+            const records = [];
+
+            const cursorRequest = store.openCursor();
+            cursorRequest.onerror = event => {
+                console.error('Cursor error:', event.target.errorCode);
+            };
+            cursorRequest.onsuccess = event => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    if (cursor.value.oid == oid) {
+                        records.push(cursor.value);
+                    }
+                    cursor.continue();
+                }
+                else {
+                    resolve(records);
+                }
+            };
+        };
+    });
+
+    let result = await request;
+
+    return result;
+}
+
+export async function getAllByOwner_V1_does_not_work(collectionName, oid) {
+    const kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
+    const transaction = kwikIndexedDB.transaction([collectionName], "readonly");
+    const objectStore = transaction.objectStore(collectionName);
+    const rvals = [];
+
+    objectStore.openCursor().onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+            if (cursor.value.oid == oid) {
+                rvals.appendChild(cursor.value);
+            }
+            cursor.continue();
+        }
+    };
+
+    return rvals;
 }
 
 let CURRENT_VERSION = 1;
