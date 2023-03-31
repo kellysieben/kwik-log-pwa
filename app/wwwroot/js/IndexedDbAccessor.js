@@ -58,7 +58,7 @@ export async function getAll(collectionName) {
     return result;
 }
 
-export async function getAllByOwner(collectionName, oid) {
+export async function getAllByOwner(collectionName, ownerId) {
     const request = new Promise((resolve) => {
         const dbReq = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
 
@@ -78,7 +78,7 @@ export async function getAllByOwner(collectionName, oid) {
             cursorRequest.onsuccess = event => {
                 const cursor = event.target.result;
                 if (cursor) {
-                    if (cursor.value.oid == oid) {
+                    if (cursor.value.ownerId == ownerId) {
                         records.push(cursor.value);
                     }
                     cursor.continue();
@@ -95,7 +95,7 @@ export async function getAllByOwner(collectionName, oid) {
     return result;
 }
 
-export async function getAllByOwner_V1_does_not_work(collectionName, oid) {
+export async function getAllByOwner_V1_does_not_work(collectionName, ownerId) {
     const kwikIndexedDB = indexedDB.open(DATABASE_NAME, CURRENT_VERSION);
     const transaction = kwikIndexedDB.transaction([collectionName], "readonly");
     const objectStore = transaction.objectStore(collectionName);
@@ -104,7 +104,7 @@ export async function getAllByOwner_V1_does_not_work(collectionName, oid) {
     objectStore.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
-            if (cursor.value.oid == oid) {
+            if (cursor.value.ownerId == ownerId) {
                 rvals.appendChild(cursor.value);
             }
             cursor.continue();

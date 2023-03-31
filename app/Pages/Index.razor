@@ -35,7 +35,7 @@
             <div class="kwik-entry row">
                 <div class="col-1 kwik-entry-delta-days">@CalcDeltaDays(e)</div>
                 <div class="col-2 kwik-entry-timestamp">@e.TimestampUTC.ToLocalTime().ToString("yyyy-MMM-dd HH:mm:ss")</div>
-                <div class="col-2 kwik-entry-timestamp">@e.Oid</div>
+                <div class="col-2 kwik-entry-timestamp">@e.OwnerId</div>
                 <div class="col-7 kwik-entry-entry">@e.Entry</div>
             </div>
         </Virtualize>

@@ -5,14 +5,14 @@ namespace app.Pages;
 public partial class Index
 {
     private string? _entry;
-    private string? _oid;
+    private string? _ownerId;
 
     private ICollection<KwikLogDTO> entries = new List<KwikLogDTO>();
 
     protected override async Task OnInitializedAsync()
     {
         await LoadAndVerifyUser();
-        entries = await _logRepository.GetAllAsync(_oid);
+        entries = await _logRepository.GetAllByOwnerAsync(_ownerId);
         entries = entries.OrderByDescending(e => e.TimestampUTC).ToList();
     }
 
@@ -22,7 +22,7 @@ public partial class Index
         {
              Entry = _entry,
              TimestampUTC = DateTime.UtcNow,
-             Oid = _oid
+             OwnerId = _ownerId
         };
 
         await _logRepository.Add(logEntry);
@@ -43,10 +43,10 @@ public partial class Index
         //     System.Console.WriteLine($"JBF.cs : Claim : [{c.Type}]");
         // }
 
-        _oid = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("oid"))?.Value;      
+        _ownerId = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("oid"))?.Value;      
         string? name = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("name"))?.Value;      
         string? jobTitle = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("jobTitle"))?.Value;      
-        System.Console.WriteLine($"JBF.cs : Index.LoadAndVerifyUser : [{name}] : [{jobTitle}] : [{_oid}]");
+        System.Console.WriteLine($"JBF.cs : Index.LoadAndVerifyUser : [{name}] : [{jobTitle}] : [{_ownerId}]");
     }
 
     private string CalcDeltaDays(KwikLogDTO entry)

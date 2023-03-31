@@ -11,7 +11,7 @@ public class FakeLogsRepo : IRepository<KwikLogDTO>
         throw new NotImplementedException();
     }
 
-    public async Task<ICollection<KwikLogDTO>> GetAllAsync(string oid)
+    public async Task<ICollection<KwikLogDTO>> GetAllByOwnerAsync(string ownerId)
     {
         return await Task.Run(GetAll);
     }

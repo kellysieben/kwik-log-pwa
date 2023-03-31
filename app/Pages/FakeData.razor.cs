@@ -14,13 +14,13 @@ public class FakeAction
     public string Args { get; private set; } = "";
     public string Result { get; private set; } = "";
     public DateTime ResultTime{ get; set; } = DateTime.Now;
-    public string Oid { get; set; } = "";
+    public string OwnerId { get; set; } = "";
 
-    public void Parse(string oid)
+    public void Parse(string ownerId)
     {
         Cmd = Regex.Match(Action, Pattern).ToString();
         Args = Action.Replace(Cmd,"").Trim();
-        Oid = oid;
+        OwnerId = ownerId;
     }
 
     public void SetResult(string result)
@@ -36,7 +36,7 @@ public record ActionLogEntry
     public string Args { get; private set; }
     public string Result { get; private set; }
     public DateTime ResultTime{ get; private set; }
-    public string Oid { get; private set; }
+    public string OwnerId { get; private set; }
 
     public ActionLogEntry(FakeAction action)
     {
@@ -44,7 +44,7 @@ public record ActionLogEntry
         Args = action.Args;
         Result = action.Result;
         ResultTime = action.ResultTime;
-        Oid = action.Oid;
+        OwnerId = action.OwnerId;
     }
 }
 
@@ -53,16 +53,16 @@ public partial class FakeData
     private static Random rnd = new();
     private FakeAction action = new();
     private List<ActionLogEntry> _actionLog = new List<ActionLogEntry>();
-    private string? _oid;
+    private string? _ownerId;
     protected override async Task OnInitializedAsync()
     {
         var authState = await authProvider.GetAuthenticationStateAsync();
-        _oid = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("oid"))?.Value;
+        _ownerId = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("oid"))?.Value;
     }
 
     private async Task HandleAdHocCommand()
     {
-        action.Parse(_oid);
+        action.Parse(_ownerId);
         await Run(action)();
         _actionLog.Add(new ActionLogEntry(action));
         action = new();
@@ -91,7 +91,7 @@ public partial class FakeData
             {
                 Entry = $"[rnd] Entry {i}-{rnd.Next(999)}",
                 TimestampUTC = DateTime.UtcNow.AddHours(-1 * rnd.Next(8766)),
-                Oid = _oid
+                OwnerId = _ownerId
             };
 
             await _logRepository.Add(logEntry);
