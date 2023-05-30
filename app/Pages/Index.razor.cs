@@ -1,4 +1,5 @@
 using common;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 namespace app.Pages;
 
@@ -15,6 +16,21 @@ public partial class Index
         entries = await _logRepository.GetAllByOwnerAsync(_ownerId);
         entries = entries.OrderByDescending(e => e.TimestampUTC).ToList();
     }
+
+    // private async ValueTask<ItemsProviderResult<KwikLogDTO>> LoadLogEntries(ItemsProviderRequest request)
+    // {
+    //     var startIndex = request.StartIndex;
+    //     var count = request.Count;
+
+    //     // Simulate an async data retrieval from a data source
+    //     await Task.Delay(200);
+    //     entries = await _logRepository.GetAllByOwnerAsync(_ownerId);
+    //     entries = entries.OrderByDescending(e => e.TimestampUTC).ToList();
+
+    //     var result = entries.Skip(startIndex).Take(count).ToList();
+
+    //     return new ItemsProviderResult<KwikLogDTO>(result, entries.Count);
+    // }
 
     public async Task AddEntry()
     {

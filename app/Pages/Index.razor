@@ -31,13 +31,17 @@
     @if (entries is not null)
     {
         <div>Total Entries = @entries.Count</div>
-        <Virtualize Items="@entries" Context="e" OverscanCount="10">
-            <div class="kwik-entry row">
-                <div class="col-1 kwik-entry-delta-days">@CalcDeltaDays(e)</div>
-                <div class="col-2 kwik-entry-timestamp">@e.TimestampUTC.ToLocalTime().ToString("yyyy-MMM-dd HH:mm:ss")</div>
-                <div class="col-2 kwik-entry-timestamp">@e.OwnerId</div>
-                <div class="col-7 kwik-entry-entry">@e.Entry</div>
-            </div>
-        </Virtualize>
+        <div class="list-group">
+            <Virtualize Items="@entries" Context="e" OverscanCount="10">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"></h5>
+                    <small class="text-muted">@CalcDeltaDays(e) days ago</small>
+                    </div>
+                    <p class="mb-1">@e.Entry</p>
+                    <small class="text-muted">@e.TimestampUTC.ToLocalTime().ToString("yyyy-MMM-dd HH:mm:ss")</small>
+                </a>
+            </Virtualize>
+        </div>
     }
 </div>
